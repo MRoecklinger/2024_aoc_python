@@ -1,8 +1,4 @@
-def clean_data(data):
-    res = []
-    for item in data:
-        res.append(item.split("\n")[0])
-    return res
+import itertools
 
 def print_matrix(data):
     for item in data:
@@ -47,23 +43,29 @@ def create_diagonal_str_increasing(data):
         array_per_diagonal =[]
         for j in range(0, len(data)):
             array_per_diagonal.append(data[i][j])
-
         diag_st = ""
         diag_str = diag_st.join(array_per_diagonal)
         diagonal_increasing_str.append(diag_str)
     return diagonal_increasing_str
 
 
+def get_all_directions():
+    _ = [-1, 0, 1]
+    all_dirs = list(itertools.product(_, _))
+    all_dirs.remove((0,0))
+    print(all_dirs)
+
+
+
 
 def main():
     with open("04_12_demo_input.txt", "r") as f:
-        data = f.readlines()
-
-    data_clean = clean_data(data)
-    for item in data_clean:
+        data = f.read().strip().split("\n")
+    get_all_directions()
+    for item in data:
         print(item)
     print("--------")
-    for item in create_diagonal_str_decreasing(data_clean):
+    for item in create_diagonal_str_decreasing(data):
         print(item)
     # create one list
     """
